@@ -243,7 +243,7 @@ class StudyGuide extends React.Component {
                     return (
                       <tr key={index}>
                         <td>
-                          <Link to={`/biblebase/${book}/${c}/${v}`}
+                          <Link to={`/${book}/${c}/${v}`}
                                 className={classNames({
                                   "verseLink": true,
                                   "disable-link": this.props.menuOpen
@@ -571,7 +571,7 @@ class StudyGuide extends React.Component {
                         <tr className="cross-reference" key={cr.verseKey}>
                           <td className="cr-verseKey-col">
                             <Link
-                              to={`/biblebase/${cr.book}/${cr.chapter}/${cr.verse}`}
+                              to={`/${cr.book}/${cr.chapter}/${cr.verse}`}
                               className={classNames({
                                 "disable-link": this.props.menuOpen,
                               })}

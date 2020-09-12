@@ -1,6 +1,5 @@
 {
   "name": "bible-app-react",
-  "homepage": "https://biblebase.github.io/biblebase",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
