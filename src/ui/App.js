@@ -50,6 +50,7 @@ class BibleApp extends React.Component {
               </div>
             )}
           />
+          <Route path="/" render={() => (<Redirect to={'/1/1'} />)} />
         </Switch>
       </div>
     );
