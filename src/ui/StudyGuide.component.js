@@ -570,7 +570,9 @@ class StudyGuide extends React.Component {
                     <div className="sermon-block" key={sermonId}>
                       <div className="title">{sermon.title}</div>
                       <div className="author">{sermon.preacher}</div>
+                      <div className="desc">{sermon.verses}</div>
                       <div className="date">{sermon.date}</div>
+
                       {sermon.audio === undefined || (
                         <audio className="sermon-audio" controls>
                           <source src={sermon.audio} type="audio/mpeg" />
