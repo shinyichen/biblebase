@@ -513,6 +513,9 @@ class StudyGuide extends React.Component {
               {Object.entries(versesData.versesObjects).map(
                 ([verseKey, verseObj], index, arr) => (
                   <React.Fragment key={verseKey}>
+                    <div className="separator">
+                      {verseKey.split(".")[1]}:{verseKey.split(".")[2]}
+                    </div>
                     <div className="words-table">
                       {verseObj.dedupedWords.map((word, index) => (
                         <div className="word-cell" key={index}>
@@ -548,7 +551,6 @@ class StudyGuide extends React.Component {
                         </div>
                       ))}
                     </div>
-                    {index === arr.length - 1 || <hr />}
                   </React.Fragment>
                 )
               )}
