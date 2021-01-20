@@ -122,6 +122,7 @@ class StudyGuide extends React.Component {
 
       // 2. for each cross referenced verse
       const crs = verseObj.analytics.crossRefs;
+
       for (let cr of crs) {
         const [crVerseBook, crVerseChapter, crVerseVerse] = cr.verseKey.split(
           "."
@@ -132,6 +133,7 @@ class StudyGuide extends React.Component {
         crossRef.book = books[crVerseBook].index;
         crossRef.chapter = crVerseChapter;
         crossRef.verse = crVerseVerse;
+        crossRef.weight = cr.totalScore;
         crossRef.verseTextEn = cr.nasb;
         crossRef.verseTextCh = cr.words.map((word) =>
           Object.assign(
@@ -157,6 +159,12 @@ class StudyGuide extends React.Component {
         }
         verseData[verseKey].crossReferences.push(crossRef);
       }
+
+      // sort corss references by weight
+      verseData[verseKey].crossReferences.sort((a, b) => {
+        if (a.weight === b.weight) return 0;
+        return a.weight > b.weight ? -1 : 1;
+      });
     }
 
     this.setState({
@@ -597,7 +605,7 @@ class StudyGuide extends React.Component {
             )}
           </div>
 
-          {/* Analytics */}
+          {/* Cross references */}
           <div id="analytics" className="section">
             <div className="section-heading">相關經文（實驗功能）</div>
             <div className="section-description">
@@ -609,6 +617,9 @@ class StudyGuide extends React.Component {
                   !verseObj.crossReferences ||
                   verseObj.crossReferences.length === 0 || (
                     <React.Fragment key={verseKey}>
+                      <div className="separator">
+                        {verseKey.split(".")[1]}:{verseKey.split(".")[2]}
+                      </div>
                       <table>
                         <tbody>
                           {verseObj.crossReferences.map((cr) => (
@@ -653,7 +664,6 @@ class StudyGuide extends React.Component {
                           ))}
                         </tbody>
                       </table>
-                      {index === arr.length - 1 || <hr />}
                     </React.Fragment>
                   )
               )}
